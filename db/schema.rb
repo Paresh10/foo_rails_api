@@ -10,24 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_31_074245) do
+ActiveRecord::Schema.define(version: 2022_01_30_214943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "customers", force: :cascade do |t|
     t.string "name"
+    t.integer "total_points"
+    t.integer "avg_points_per_order"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "avg_points_per_order"
   end
 
   create_table "orders", force: :cascade do |t|
     t.bigint "customer_id"
     t.decimal "amount"
+    t.integer "rewards"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "total_points"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 

@@ -4,20 +4,19 @@
 # id                :integer    not null, primary_key
 # customer_id       :integer    not null, foreign_key
 # amount            :bigint
-# total_points      :integer
-# average_points    :ineger
+# rewards           :integer
 
 class Order < ApplicationRecord
     belongs_to :customers, optional: true
 
-    def self.total_points_per_purchase
+    def self.rewards_per_purchase
         reward_points = 0
 
         orders_between_12pm_and_1pm = Order.where("(created_at AT TIME ZONE 'UTC' AT TIME ZONE 'america/chicago')::time BETWEEN '12:00:00' AND '13:00:00'")
         if !orders_between_12pm_and_1pm.empty?
             orders_between_12pm_and_1pm.each do |ord|
                 reward_points = (ord.amount / 3).ceil
-                ord.update!(total_points: reward_points) if (reward_points > 2) && (reward_points <= 20)
+                ord.update!(rewards: reward_points) if (reward_points > 2) && (reward_points <= 20)
             end        
         end
 
@@ -26,7 +25,7 @@ class Order < ApplicationRecord
         if !orders_between_11am_and_12pm.empty?
             orders_between_11am_and_12pm.each do |ord|
                 reward_points = (ord.amount / 2).ceil
-                ord.update!(total_points: reward_points) if (reward_points > 2) && (reward_points <= 20)
+                ord.update!(rewards: reward_points) if (reward_points > 2) && (reward_points <= 20)
             end
         end
 
@@ -35,7 +34,7 @@ class Order < ApplicationRecord
         if !orders_between_1pm_and_2pm.empty?
             orders_between_1pm_and_2pm.each do |ord|
                 reward_points = (ord.amount / 2).ceil
-                ord.update!(total_points: reward_points) if (reward_points > 2) && (reward_points <= 20)
+                ord.update!(rewards: reward_points) if (reward_points > 2) && (reward_points <= 20)
             end
         end        
 
@@ -43,7 +42,7 @@ class Order < ApplicationRecord
         if !orders_between_10am_and_11am.empty?
             orders_between_10am_and_11am.each do |ord|
                 reward_points = ord.amount.ceil
-                ord.update!(total_points: reward_points) if (reward_points > 2) && (reward_points <= 20)
+                ord.update!(rewards: reward_points) if (reward_points > 2) && (reward_points <= 20)
             end
         end
 
@@ -52,7 +51,7 @@ class Order < ApplicationRecord
         if !orders_between_2pm_and_3pm.empty?
             orders_between_2pm_and_3pm.each do |ord|
                 reward_points += ord.amount.ceil
-                ord.update!(total_points: reward_points) if (reward_points > 2) && (reward_points <= 20)
+                ord.update!(rewards: reward_points) if (reward_points > 2) && (reward_points <= 20)
             end
         end   
 
@@ -63,7 +62,7 @@ class Order < ApplicationRecord
         if !regular_orders.empty?
             regular_orders.each do |ord|
                 reward_points += (ord.amount * 0.25).ceil
-                ord.update!(total_points: reward_points) if (reward_points > 2) && (reward_points <= 20)
+                ord.update!(rewards: reward_points) if (reward_points > 2) && (reward_points <= 20)
             end            
         end      
     end
