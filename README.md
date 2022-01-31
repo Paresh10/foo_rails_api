@@ -6,19 +6,12 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
-
-* System dependencies
-
-* Configuration
+* 2.7.2
 
 * Database creation
+Please run bin/rails db:create after cloning the repo
 
 * Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+Please run bin/rails db:migrate and bin/rails db:seed to initialize and seed the data
 
 * ...
