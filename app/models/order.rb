@@ -61,7 +61,7 @@ class Order < ApplicationRecord
 
         if !regular_orders.empty?
             regular_orders.each do |ord|
-                reward_points += (ord.amount * 0.25).ceil
+                reward_points = (ord.amount * 0.25).ceil
                 ord.update!(rewards: reward_points) if (reward_points > 2) && (reward_points <= 20)
             end            
         end      
