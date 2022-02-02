@@ -20,6 +20,7 @@ class Customer < ApplicationRecord
                 customer.update!(total_points: tot_points)
             end
         end
+        tot_points
     end
 
     def self.average_points(customer_id)
@@ -33,5 +34,6 @@ class Customer < ApplicationRecord
                 customer.update!(avg_points_per_order: avg_points)
             end
         end
+        avg_points
     end
 end
