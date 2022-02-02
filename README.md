@@ -21,6 +21,9 @@
 * run `Customer.average_points(customer_id)` this Customer class method also takes a `customer_id` as an argument and will return the avg points per order for given customer.
 * run `Customer.customer_report` this Customer class method will output the report of each customer with Total points and avg points per order.
 
-## Next Steps
-Next steps in this api to implement rake task/s which runs the method from models and update the database.
-Once we have rake tasks completed then we want to implement controllers which will return a json or requested format
+## How to run test
+* There are test cases implemented for models and controller. To run the test please run this command `rspec spec` and like me if you like to see outout in a better logs please run `rspec spec -f d` 
+
+## How to get the data from api
+* Once you have the above steps taken care. Please start your rails server by executing `bin/rails s`.
+* and now make a request to fetch the api to get customer reports to this url 'http://localhost:3000/customer/customers_report' assuming your rails server is running on port 3000
