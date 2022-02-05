@@ -21,5 +21,5 @@ This api provides the status on customer rewards points based on their purchasin
 * There are test cases implemented for models and controller. To run the test please run this command `rspec spec` and like me if you like to see outout in a better logs please run `rspec spec -f d` 
 
 ## How to get the data from api
-* Once you have the above steps taken care. Please start your rails server by executing `bin/rails s`.
+* Once you have the above steps taken care of, please start your rails server by executing `bin/rails s`.
 * and now make a request to fetch the api to get customer reports to this url 'http://localhost:3000/customer/customers_report' assuming your rails server is running on `port 3000`
