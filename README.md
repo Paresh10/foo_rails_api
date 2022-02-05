@@ -15,7 +15,6 @@ This api provides the status on customer rewards points based on their purchasin
 ## How to run rake tasks?
 * To see the list of all the tasks please run `rake --tasks`
 * For this specific api you should run `rake orders:sync_rewards` which will add the redards to each order based on given conditions
-* and `rake customers:sync_points` which will add the total and avg points to each customer
 
 
 ## How to run test
