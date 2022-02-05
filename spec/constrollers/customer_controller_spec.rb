@@ -20,12 +20,6 @@ RSpec.describe CustomerController, type: :request do
         order_three
         order_four
         Order.rewards_per_purchase
-        Customer.customer_total_points(cust_one['id'])
-        Customer.customer_total_points(cust_two['id'])
-        Customer.customer_total_points(cust_three['id'])
-        Customer.average_points(cust_one['id'])
-        Customer.average_points(cust_two['id'])
-        Customer.average_points(cust_three['id'])
     end
     
     context "customers_report" do

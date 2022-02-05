@@ -30,26 +30,24 @@ RSpec.describe Customer, type: :model do
         Order.rewards_per_purchase
     end
 
-    describe ".customer_total_points" do
-        let(:subject) { described_class.customer_total_points(cust_one['id']) }
-        let(:subject_two) { described_class.customer_total_points(cust_two['id']) }
-        let(:subject_three) { described_class.customer_total_points(cust_three['id']) }
+    describe "#customer_total_points" do
+        let(:subject) { cust_one.customer_total_points }
+        let(:subject_two) { cust_two.customer_total_points }
+        let(:subject_three) { cust_three.customer_total_points }
         
         it "update and returns the earned total points for customer" do
-            # byebug
             expect(subject).to eq 22
             expect(subject_two).to eq 3
             expect(subject_three).to eq 0
         end
     end
 
-    describe ".average_points" do
-        let(:subject) { described_class.average_points(cust_one['id']) }
-        let(:subject_two) { described_class.average_points(cust_two['id']) }
-        let(:subject_three) { described_class.average_points(cust_three['id']) }
+    describe "#average_points" do
+        let(:subject) { cust_one.average_points }
+        let(:subject_two) { cust_two.average_points }
+        let(:subject_three) { cust_three.average_points }
         
         it "update and returns the average points per order for customer" do
-            # byebug
             expect(subject).to eq 11
             expect(subject_two).to eq 3
             expect(subject_three).to eq 0
