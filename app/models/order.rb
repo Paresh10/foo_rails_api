@@ -22,7 +22,7 @@ class Order < ApplicationRecord
 
         orders_between_11am_and_12pm = Order.where("(created_at AT TIME ZONE 'UTC' AT TIME ZONE 'america/chicago')::time BETWEEN '11:00:00' AND '12:00:00'")
 
-        if !orders_between_11am_and_12pm.empty?
+        if orders_between_11am_and_12pm.present?
             orders_between_11am_and_12pm.each do |ord|
                 reward_points = (ord.amount / 2).ceil
                 ord.update!(rewards: reward_points) if (reward_points > 2) && (reward_points <= 20)
@@ -31,7 +31,7 @@ class Order < ApplicationRecord
 
         orders_between_1pm_and_2pm = Order.where("(created_at AT TIME ZONE 'UTC' AT TIME ZONE 'america/chicago')::time BETWEEN '13:00:00' AND '14:00:00'")
 
-        if !orders_between_1pm_and_2pm.empty?
+        if orders_between_1pm_and_2pm.present?
             orders_between_1pm_and_2pm.each do |ord|
                 reward_points = (ord.amount / 2).ceil
                 ord.update!(rewards: reward_points) if (reward_points > 2) && (reward_points <= 20)
@@ -39,7 +39,7 @@ class Order < ApplicationRecord
         end        
 
         orders_between_10am_and_11am = Order.where("(created_at AT TIME ZONE 'UTC' AT TIME ZONE 'america/chicago')::time BETWEEN '10:00:00' AND '11:00:00'")
-        if !orders_between_10am_and_11am.empty?
+        if orders_between_10am_and_11am.present?
             orders_between_10am_and_11am.each do |ord|
                 reward_points = ord.amount.ceil
                 ord.update!(rewards: reward_points) if (reward_points > 2) && (reward_points <= 20)
@@ -48,7 +48,7 @@ class Order < ApplicationRecord
 
         orders_between_2pm_and_3pm = Order.where("(created_at AT TIME ZONE 'UTC' AT TIME ZONE 'america/chicago')::time BETWEEN '14:00:00' AND '15:00:00'")
 
-        if !orders_between_2pm_and_3pm.empty?
+        if orders_between_2pm_and_3pm.present?
             orders_between_2pm_and_3pm.each do |ord|
                 reward_points += ord.amount.ceil
                 ord.update!(rewards: reward_points) if (reward_points > 2) && (reward_points <= 20)
@@ -59,7 +59,7 @@ class Order < ApplicationRecord
 
         regular_orders = Order.where(['id not in (?)', promotional_order_ids])
 
-        if !regular_orders.empty?
+        if regular_orders.present?
             regular_orders.each do |ord|
                 reward_points = (ord.amount * 0.25).ceil
                 ord.update!(rewards: reward_points) if (reward_points > 2) && (reward_points <= 20)
