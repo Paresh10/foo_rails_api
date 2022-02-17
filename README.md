@@ -1,4 +1,4 @@
-# Fooda Rails Api
+# Ruby On Rails Api
 This api provides the status on customer rewards points based on their purchasing history.
 
 ## Ruby version
